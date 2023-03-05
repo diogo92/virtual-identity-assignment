@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>URL Shortener</title>
+  </head>
+  <body>
+    <h1>URL Shortener</h1>
+    <% if (typeof error !== 'undefined') { %>
+      <p style="color: red;"><%= error %></p>
+    <% } %>
+    <form method="POST" action="/">
+      <label for="url-input">Enter URL:</label>
+      <input type="text" id="url-input" name="url">
+      <button type="submit">Process</button>
+    </form>
+    <% if (typeof shortenedUrl !== 'undefined') { %>
+      <p>Your shortened URL is <%= shortenedUrl %></p>
+    <% } %>
+    <% if (typeof timesShortened !== 'undefined') { %>
+      <p>This URL has been shortened <%= timesShortened %> times</p>
+    <% } %>
+    <% if (typeof timesAccessed !== 'undefined') { %>
+      <p>This URL has been accessed <%= timesAccessed %> times</p>
+    <% } %>
+    <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+      <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+      </form>
+    <% } else { %>
+      <form action="/login" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    <% } %>
+  </body>
+</html>
